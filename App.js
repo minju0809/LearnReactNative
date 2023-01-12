@@ -5,113 +5,49 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
   useColorScheme,
-  View,
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import {Header} from 'react-native/Libraries/NewAppScreen';
+import Greeting from './components/Greeting';
+import Box from './components/Box';
+import Counter from './components/Counter';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const name = 'JSX';
+  const [visible, setVisible] = useState(true);
+  const [count, setCount] = useState(0);
+  const onIncrease = () => setCount(count + 1);
+  const onDecrease = () => setCount(count - 1);
+  // toggle button 만들기
+  const onPress = () => {
+    setVisible(!visible);
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View>
-        <Text>Hello React!aef</Text>
-      </View>
-      {/* <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+    <SafeAreaView style={styles.full}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView> */}
+        <Greeting name={name} />
+        {/* props의 이름만 적어주면 이 값을 true로 설정함 */}
+        <Box rounded size="large" color="blue" />
+        <Button title="toggle" onPress={onPress} />
+        {visible ? <Box rounded={true} size="medium" color="yellow" /> : null}
+        <Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  full: {
+    flex: 1,
+    backgroundColor: '#809090',
   },
 });
 
