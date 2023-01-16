@@ -6,48 +6,34 @@
  */
 
 import React, {useState} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import {Button, ScrollView, StyleSheet, useColorScheme} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Header} from 'react-native/Libraries/NewAppScreen';
-import Greeting from './components/Greeting';
-import Box from './components/Box';
-import Counter from './components/Counter';
+import Practice from './components/Practice';
+import TodoList from './components/TodoList';
 
 const App = () => {
-  const name = 'JSX';
-  const [visible, setVisible] = useState(true);
-  const [count, setCount] = useState(0);
-  const onIncrease = () => setCount(count + 1);
-  const onDecrease = () => setCount(count - 1);
-  // toggle button 만들기
-  const onPress = () => {
-    setVisible(!visible);
-  };
+  const [page, setPage] = useState(0);
 
   return (
-    <SafeAreaView style={styles.full}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Header />
-        <Greeting name={name} />
-        {/* props의 이름만 적어주면 이 값을 true로 설정함 */}
-        <Box rounded size="large" color="blue" />
-        <Button title="toggle" onPress={onPress} />
-        {visible ? <Box rounded={true} size="medium" color="yellow" /> : null}
-        <Counter count={count} onIncrease={onIncrease} onDecrease={onDecrease} />
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.block} edges={['bottom']}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          {/* <Header /> */}
+          <Button title="Practice" onPress={() => setPage(0)}></Button>
+          <Button title="TodoList" onPress={() => setPage(1)}></Button>
+          {page === 0 && <Practice />}
+          {page === 1 && <TodoList />}
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  full: {
+  block: {
     flex: 1,
-    backgroundColor: '#809090',
+    // backgroundColor: '#809090',
   },
 });
 
