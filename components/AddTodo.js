@@ -20,7 +20,7 @@ const AddTodo = () => {
 
   const button = (
     <View style={styles.buttonStyle}>
-      <Image source={'../assets/icons/add_white/add_white.png'} />
+      <Image source={require('../assets/icons/add_white/add_white.png')} />
     </View>
   );
 
