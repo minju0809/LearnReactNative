@@ -17,6 +17,7 @@ const Empty = () => {
 const styles = StyleSheet.create({
   block: {
     flex: 1,
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
