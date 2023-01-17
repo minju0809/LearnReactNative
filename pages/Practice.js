@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Greeting from './Greeting';
-import Box from './Box';
-import Counter from './Counter';
+import Greeting from '../components/Greeting';
+import Box from '../components/Box';
+import Counter from '../components/Counter';
 import { Button } from 'react-native';
 
 const Practice = () => {

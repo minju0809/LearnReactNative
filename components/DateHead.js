@@ -7,13 +7,13 @@ const DateHead = ({date}) => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
-  // const {top} = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
 
   const formatted = `${year}년 ${month}월 ${day}일`;
 
   return (
     <>
-      {/* <View style={[styles.statusBarPlaceholder, {height: top}]} /> */}
+      <View style={[styles.statusBarPlaceholder, {height: top}]} />
       {/* <StatusBar /> */}
       <View style={styles.block}>
         <Text style={styles.dateText}>{formatted}</Text>
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 24,
     color: 'white',
+  },
+  statusBarPlaceholder: {
+    backgroundColor: "#26a69a"
   },
 });
 
