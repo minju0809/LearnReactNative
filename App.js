@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import {createDrawerNavigator} from '@react-navigation/drawer';
 import React, {useState} from 'react';
 import {
   View,
@@ -18,6 +19,7 @@ import TodoList from './screens/TodoList';
 import HeaderlessScreen from './screens/HeaderlessScreen';
 
 const Stack = createNativeStackNavigator();
+// const Drawer = createDrawerNavigator();
 
 const App = () => {
   const [page, setPage] = useState(0);
@@ -25,10 +27,11 @@ const App = () => {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        {/* <SafeAreaView> */}
+        <SafeAreaView style={{flex: 1}}>
+          {/* <SafeAreaView> */}
           <Stack.Navigator
             initialRouteName="Home"
-            // screenOptions={{headerShown: false}} 적용하려면 SafeAreaView가 필요한데, 적용하면 화면이 보이지 않음
+            // screenOptions={{headerShown: false}}
           >
             <Stack.Screen
               name="Home"
@@ -79,9 +82,9 @@ const App = () => {
             <Button title="Practice" onPress={() => setPage(1)}></Button>
           <Button title="TodoList" onPress={() => setPage(2)}></Button> */}
             {/* </ScrollView> */}
-            {/* </SafeAreaView> */}
           </Stack.Navigator>
-        {/* </SafeAreaView> */}
+          {/* </SafeAreaView> */}
+        </SafeAreaView>
       </SafeAreaProvider>
     </NavigationContainer>
   );
